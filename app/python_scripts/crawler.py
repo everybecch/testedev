@@ -24,7 +24,6 @@ def get_currency_data(code_or_number):
 
                 currency_locations = []
 
-                # Extract currency locations and icons
                 for location_data in currency_locations_data:
                     location_name = location_data.text.strip()
                     location_icon = location_data.find_previous('img')['src'].strip() if location_data.find_previous('img') else ""

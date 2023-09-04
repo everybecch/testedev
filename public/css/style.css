@@ -2,20 +2,19 @@ body {
     text-align: center;
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0; /* Altere a cor de fundo conforme necessário */
-}
+    background-color: #f0f0f0; 
 
 h1 {
-    margin-top: 50px; /* Aumentei a margem superior para movê-lo para baixo */
-    font-size: 24px; /* Altere o tamanho da fonte conforme necessário */
-    color: #333; /* Altere a cor do texto conforme necessário */
+    margin-top: 50px; 
+    font-size: 24px; 
+    color: #333; 
 }
 
 #currency-form {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 20px; /* Ajuste a margem superior conforme necessário */
+    margin-top: 20px; 
 }
 
 label, input, button {
@@ -23,29 +22,30 @@ label, input, button {
 }
 
 label {
-    font-size: 16px; /* Altere o tamanho da fonte do rótulo conforme necessário */
+    font-size: 16px; 
 }
 
 input {
-    padding: 10px; /* Aumente ou diminua o preenchimento conforme necessário */
-    width: 300px; /* Defina uma largura fixa para o input, ajustando conforme desejado */
+    padding: 10px; 
+    width: 100%; 
 }
 #result-data {
-    max-width: 90%; /* Defina um limite de largura para evitar linhas muito longas */
-    font-size: 16px; /* Defina um tamanho de fonte maior */
-    white-space: pre-wrap; /* Permita que o texto quebre linhas automaticamente */
-    word-wrap: break-word; /* Permita que as palavras sejam quebradas se forem muito longas */
+    max-width: 90%; 
+    font-size: 16px; 
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
 }
 
 button {
-    background-color: #007bff; /* Cor de fundo do botão */
-    color: #fff; /* Cor do texto do botão */
-    padding: 10px 20px; /* Preenchimento do botão */
+    background-color: #007bff; 
+    color: #fff; 
+    padding: 10px 20px; 
     border: none;
     cursor: pointer;
-    font-size: 16px; /* Altere o tamanho da fonte do botão conforme necessário */
+    font-size: 16px; 
 }
 
 button:hover {
-    background-color: #0056b3; /* Cor de fundo do botão ao passar o mouse */
+    background-color: #0056b3; 
+}
 }

@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function () {
     consultarButton.addEventListener('click', function () {
         const query = document.getElementById('query').value;
 
-        // Fazer uma solicitação AJAX para a rota de consulta
         fetch('/consultar', {
             method: 'POST',
             headers: {
@@ -20,7 +19,6 @@ document.addEventListener('DOMContentLoaded', function () {
         .then(response => response.json())
         .then(data => {
             if (!data.error) {
-                // Formatar os dados em um texto legível
                 const formattedText = `
                     Código: ${data.code}
                     Número: ${data.number}
@@ -31,11 +29,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     ${data.currency_locations.map(location => `${location.location}: ${location.icon}`).join('\n')}
                 `;
 
-                // Exibir os dados formatados na página
                 resultData.textContent = formattedText;
                 resultDiv.classList.remove('hidden');
             } else {
-                // Mostrar mensagem de erro, se houver
                 alert(data.error);
             }
         })
