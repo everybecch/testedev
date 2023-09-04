@@ -2,10 +2,10 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import sys
+import mysql.connector
 
-def get_currency_data(code_or_number):
+def get_currency_data_from_wikipedia(code_or_number):
     url = 'https://pt.wikipedia.org/wiki/ISO_4217'
-
     response = requests.get(url)
 
     if response.status_code == 200:
@@ -50,10 +50,47 @@ if __name__ == "__main__":
         print(json.dumps({"error": "Código ou número ISO 4217 não fornecido."}, ensure_ascii=False))
     else:
         code_or_number = sys.argv[1]
-        currency_data = get_currency_data(code_or_number)
+        currency_data = get_currency_data_from_wikipedia(code_or_number)
 
         if currency_data is not None:
-            json_data = json.dumps(currency_data, ensure_ascii=False)
-            print(json_data)
+            try:
+                # Estabeleça uma conexão com o MySQL
+                db_connection = mysql.connector.connect(
+                    host='localhost',  # Insira o host do seu servidor MySQL
+                    user='root',  # Insira o nome de usuário do MySQL
+                    password='Nova@162713',  # Insira a senha do MySQL
+                    database='iso_currency_data'  # Insira o nome do banco de dados criado
+                )
+
+                # Crie uma tabela para armazenar os dados, se ainda não existir
+                cursor = db_connection.cursor()
+                cursor.execute("""
+                    CREATE TABLE IF NOT EXISTS currency_data (
+                        code VARCHAR(10) PRIMARY KEY,
+                        number INT,
+                        `decimal` INT,
+                        currency VARCHAR(255),
+                        locations JSON
+                    )
+                """)
+                for currency_info in currency_data:
+                    cursor.execute("""
+                        INSERT INTO currency_data (code, number, `decimal`, currency, locations)
+                        VALUES (%s, %s, %s, %s, %s)
+                    """, (
+                        currency_info['code'],
+                        currency_info['number'],
+                        currency_info['decimal'],
+                        currency_info['currency'],
+                        json.dumps(currency_info['currency_locations'])
+                    ))
+                db_connection.commit()
+                db_connection.close()
+
+                print(json.dumps({"success": "Dados armazenados com sucesso no MySQL."}, ensure_ascii=False))
+
+            except Exception as e:
+                print(json.dumps({"error": str(e)}, ensure_ascii=False))
+
         else:
             print(json.dumps({"error": "Moeda não encontrada."}, ensure_ascii=False))
