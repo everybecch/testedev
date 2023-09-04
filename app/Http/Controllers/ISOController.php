@@ -18,7 +18,7 @@ class ISOController extends Controller
 
             if ($output !== null) {
                 $result = json_decode($output, true);
-
+// debug
                 if (is_array($result)) {
                     if (!empty($result)) {
                         return response()->json($result[0]);
