@@ -1,30 +1,41 @@
-# Página de Consulta de Códigos ISO 4217
+# Consulta de Códigos ISO 4217
 
-Esta é uma aplicação web simples que permite aos usuários consultar informações sobre códigos e números ISO 4217 relacionados a moedas. A página também fornece detalhes sobre a moeda, incluindo seu código, número, casas decimais e os locais onde a moeda é usada.
+Esta é uma aplicação simples que permite aos usuários consultar informações sobre códigos e números ISO 4217 de moedas. Ela exibe informações sobre a moeda, como código, número, casas decimais e os locais onde a moeda é utilizada.
 
 ## Tecnologias Utilizadas
 
-- **Laravel (PHP)**: Utilizado para o desenvolvimento da aplicação web.
-- **Python**: Usado para extrair informações da web a partir da URL "https://pt.wikipedia.org/wiki/ISO_4217".
-- **HTML/CSS**: Utilizados para estruturar e estilizar a página.
-- **JavaScript**: Utilizado para interações do usuário e fazer solicitações à API.
-- **MySQL**: Usado para armazenar parte dos dados obtidos a partir da web.
+- Laravel (PHP): Utilizado para criar a estrutura da aplicação web.
+- Python: Utilizado para realizar o web scraping e buscar informações sobre as moedas.
+- JavaScript: Utilizado para fazer requisições AJAX e interagir com a API.
+- HTML e CSS: Utilizados para criar a interface da aplicação.
 
-## Pré-requisitos
+## Como Executar Localmente
 
-Certifique-se de ter as seguintes ferramentas instaladas em seu sistema:
+Para executar esta aplicação em seu ambiente local, siga estas etapas:
 
-- [PHP](https://www.php.net/) (com Laravel)
-- [Composer](https://getcomposer.org/)
-- [Python 3](https://www.python.org/)
-- [MySQL](https://www.mysql.com/)
-- [Node.js](https://nodejs.org/) (para compilação de assets)
+1. Certifique-se de ter o PHP e o Composer instalados em seu sistema.
+2. Clone este repositório para o seu computador:
+3. Navegue até o diretório do projeto:
+4. Instale as dependências do Laravel executando o comando:
+5. Copie o arquivo `.env.example` para `.env`:
+6. Gere uma chave de aplicação usando o comando: php artisan key:generate
 
-## Instalação
+7. Execute o servidor de desenvolvimento do Laravel: php artisan serve
 
-Siga estas etapas para configurar o projeto em seu ambiente local:
+8. Acesse a aplicação no seu navegador através do endereço `http://localhost:8000`.
 
-1. Clone o repositório:
+## Como Usar
 
-   ```bash
-   git clone https://github.com/seunomeusuario/seurepositorio.git
+1. Na página inicial, você encontrará um campo de texto onde pode inserir um código ou número ISO 4217.
+2. Digite o código ou número desejado e clique no botão "Consultar".
+3. Os detalhes da moeda, incluindo código, número, casas decimais, moeda e locais de utilização, serão exibidos na tela.
+
+## Contribuição
+
+Este é um projeto de código aberto, e você é bem-vindo para contribuir. Sinta-se à vontade para abrir problemas (issues) ou enviar pull requests com melhorias.
+
+
+
+
+
+
