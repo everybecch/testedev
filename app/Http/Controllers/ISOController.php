@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers; //testedev
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 use App\Http\Controllers\Controller;
+use mysql_xdevapi\Exception;
 
 class ISOController extends Controller
 {
@@ -43,17 +44,17 @@ class ISOController extends Controller
 
     private function getCurrencyDataFromWikipedia($codeOrNumber)
     {
-        $wikipediaURL = 'https://pt.wikipedia.org/wiki/ISO_4217_' . $codeOrNumber;
+        $wikipediaURL = 'https://pt.wikipedia.org/wiki/ISO_4217' . $codeOrNumber;
 
         $response = Http::get($wikipediaURL);
 
         if ($response->successful()) {
             $html = $response->body();
             $crawler = new Crawler($html);
-            $code = $crawler->filter('.wikitable .sorttable tbody tr:nth-child(2) td:nth-child(1)')->text();
-            $number = (int)$crawler->filter('.wikitable .sorttable tbody tr:nth-child(2) td:nth-child(2)')->text();
-            $decimal = (int)$crawler->filter('.wikitable .sorttable tbody tr:nth-child(2) td:nth-child(3)')->text();
-            $currency = $crawler->filter('.wikitable .sorttable tbody tr:nth-child(2) td:nth-child(4)')->text();
+            $code = $crawler->filter('wikitable tbody tr:nth-child(2) td:nth-child(1)')->text();
+            $number = (int)$crawler->filter('wikitable tbody tr:nth-child(2) td:nth-child(2)')->text();
+            $decimal = (int)$crawler->filter('wikitable tbody tr:nth-child(2) td:nth-child(3)')->text();
+            $currency = $crawler->filter('wikitable tbody tr:nth-child(2) td:nth-child(4)')->text();
             $currencyData = [
                 'code' => $code,
                 'number' => $number,

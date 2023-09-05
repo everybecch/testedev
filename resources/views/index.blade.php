@@ -17,8 +17,9 @@
     </form>
 
     <div id="result">
-    <pre id="result-data"></pre>
-</div>
+        <pre id="result-data"></pre>
+        <div id="currency-locations"></div>
+    </div>
 
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
