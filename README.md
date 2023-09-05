@@ -44,6 +44,9 @@ CREATE TABLE IF NOT EXISTS currency_data (
 
 ## Como Usar
 
+![Exemplo 1](img/exemplo1.png)
+![Exemplo 2](img/exemplo2.png)
+
 1. Na página inicial, você encontrará um campo de texto onde pode inserir um código ou número ISO 4217.
 2. Digite o código Exemplo: USD, 840, ou número desejado e clique no botão "Consultar".
 3. Os detalhes da moeda, incluindo código, número, casas decimais, moeda e locais de utilização, serão exibidos na tela.
@@ -51,6 +54,7 @@ CREATE TABLE IF NOT EXISTS currency_data (
 ## Contribuição
 
 Este é um projeto de código aberto, e você é bem-vindo para contribuir. Sinta-se à vontade para abrir problemas (issues) ou enviar pull requests com melhorias.
+
 
 
 
