@@ -19,6 +19,7 @@
     <div id="result">
     <pre id="result-data"></pre>
 </div>
+<p>Por: Everton. S | Everybecch</p>
 
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
