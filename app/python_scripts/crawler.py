@@ -54,15 +54,13 @@ if __name__ == "__main__":
 
         if currency_data is not None:
             try:
-                # Estabeleça uma conexão com o MySQL
                 db_connection = mysql.connector.connect(
-                    host='localhost',  # Insira o host do seu servidor MySQL
-                    user='root',  # Insira o nome de usuário do MySQL
-                    password='Nova@162713',  # Insira a senha do MySQL
-                    database='iso_currency_data'  # Insira o nome do banco de dados criado
+                    host='localhost',  
+                    user='root',  
+                    password='Nova@162713',  
+                    database='iso_currency_data'  
                 )
 
-                # Crie uma tabela para armazenar os dados, se ainda não existir
                 cursor = db_connection.cursor()
                 cursor.execute("""
                     CREATE TABLE IF NOT EXISTS currency_data (
@@ -75,7 +73,7 @@ if __name__ == "__main__":
                 """)
                 for currency_info in currency_data:
                     cursor.execute("""
-                        INSERT INTO currency_data (code, number, `decimal`, currency, locations)
+                        INSERT INTO currency_teste (code, number, `decimal`, currency, locations)
                         VALUES (%s, %s, %s, %s, %s)
                     """, (
                         currency_info['code'],
@@ -84,6 +82,7 @@ if __name__ == "__main__":
                         currency_info['currency'],
                         json.dumps(currency_info['currency_locations'])
                     ))
+
                 db_connection.commit()
                 db_connection.close()
 

@@ -6,7 +6,8 @@ Route::get('/', function () {
 });
 
 Route::post('/consultar', 'App\Http\Controllers\ISOController@search');
-Route::get('/getCurrencyDataFromWikipedia', 'App/Http/Controllers/ISOController@getCurrencyDataFromWikipedia');
+Route::get('/getCurrencyDataFromWikipedia', 'ISOController@getCurrencyDataFromWikipedia');
+
 
 
 

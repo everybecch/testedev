@@ -9,12 +9,12 @@ document.addEventListener('DOMContentLoaded', function () {
         const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
         fetch('/consultar', {
-            method: 'POST',
+            method: 'POST', 
             headers: {
                 'Content-Type': 'application/json',
-                'X-CSRF-TOKEN': csrfToken,
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
             },
-            body: JSON.stringify({ _token: csrfToken, code_or_number: query })
+            body: JSON.stringify({ code_or_number: query })
         })
         .then(response => {
             console.log('Dados recebidos do servidor:', response); 
@@ -33,20 +33,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (!data.error) {
                 let formattedText = `
-                    Código: ${data.code}
-                    Número: ${data.number}
-                    Casas Decimais: ${data.decimal}
-                    Moeda: ${data.currency}
-                `;
+Código: ${data.code}
+Número: ${data.number}
+Decimais: ${data.decimal}
+Moeda: ${data.currency}
+`;
 
-                if (data.currency_locations && Array.isArray(data.currency_locations)) {
-                    formattedText += `\nLocais de Moeda:\n${data.currency_locations.map(location => `${location.location}: ${location.icon}`).join('\n')}`;
+                if (data.locations) {
+                    const locationsArray = JSON.parse(data.locations);
+                    if (Array.isArray(locationsArray) && locationsArray.length > 0) {
+                        formattedText += `Locais de Moeda:\n<ul>`;
+                        locationsArray.forEach(location => {
+                            formattedText += `<li>${location.location}: ${location.icon ? `<img src="${location.icon}" alt="${location.location}">` : 'N/A'}</li>`;
+                        });
+                        formattedText += `</ul>`;
+                    } else {
+                        formattedText += `Locais de Moeda: Nenhum encontrado`;
+                    }
                 }
 
-                resultData.textContent = `Dados vindos do DB:\n${formattedText}`;
+                resultData.innerHTML = `Dados vindos do DB:<br>${formattedText}`;
                 resultDiv.classList.remove('hidden');
             } else {
-                fetch(`https://pt.wikipedia.org/wiki/ISO_4217_${query}`)
+                fetch(`https://pt.wikipedia.org/wiki/ISO_4217${query}`)
                     .then(response => {
                         console.log('Resposta da Wikipedia:', response); 
 
@@ -60,17 +69,23 @@ document.addEventListener('DOMContentLoaded', function () {
                         const currencyInfo = extractCurrencyInfoFromHTML(html);
                         console.log('Dados extraídos da Wikipedia:', currencyInfo); 
                         let formattedText = `
-                            Código: ${currencyInfo.code}
-                            Número: ${currencyInfo.number}
-                            Casas Decimais: ${currencyInfo.decimal}
-                            Moeda: ${currencyInfo.currency}
+                           Código: ${currencyInfo.code}
+                           Número: ${currencyInfo.number}
+                           Decimais: ${currencyInfo.decimal}
+                           Moeda: ${currencyInfo.currency}
                         `;
 
-                        if (currencyInfo.currency_locations && Array.isArray(currencyInfo.currency_locations)) {
-                            formattedText += `\nLocais de Moeda:\n${currencyInfo.currency_locations.map(location => `${location.location}: ${location.icon}`).join('\n')}`;
+                        if (currencyInfo.currency_locations && Array.isArray(currencyInfo.currency_locations) && currencyInfo.currency_locations.length > 0) {
+                            formattedText += `Locais de Moeda:\n<ul>`;
+                            currencyInfo.currency_locations.forEach(location => {
+                                formattedText += `<li>${location.location}: ${location.icon ? `<img src="${location.icon}" alt="${location.location}">` : 'N/A'}</li>`;
+                            });
+                            formattedText += `</ul>`;
+                        } else {
+                            formattedText += `Locais de Moeda: Nenhum encontrado`;
                         }
 
-                        resultData.textContent = `Dados vindos do site Wikipedia:\n${formattedText}`;
+                        resultData.innerHTML = `Dados vindos do site Wikipedia:<br>${formattedText}`;
                         resultDiv.classList.remove('hidden');
                     })
                     .catch(error => {
