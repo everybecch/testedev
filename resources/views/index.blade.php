@@ -10,7 +10,8 @@
 <body>
     <h1>Consulta de Códigos ISO 4217</h1>
     <form id="currency-form">
-        <label for="code_or_number">Código ou Número ISO 4217:</label>
+        @csrf 
+        <label for="code_or_number">Código ou Número ISO 4217:</label> 
         <input type="text" id="query" name="code_or_number" required>
         <button type="button" id="consultar">Consultar</button>
     </form>
