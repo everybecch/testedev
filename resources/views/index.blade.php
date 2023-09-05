@@ -10,16 +10,16 @@
 <body>
     <h1>Consulta de Códigos ISO 4217</h1>
     <form id="currency-form">
-        @csrf
+        @csrf 
         <label for="code_or_number">Código ou Número ISO 4217:</label>
         <input type="text" id="query" name="code_or_number" required>
         <button type="button" id="consultar">Consultar</button>
     </form>
 
     <div id="result">
-        <pre id="result-data"></pre>
-        <div id="currency-locations"></div>
-    </div>
+    <pre id="result-data"></pre>
+</div>
+<p>Por: Everton. S | Everybecch</p>
 
     <script src="{{ asset('js/script.js') }}"></script>
 </body>
