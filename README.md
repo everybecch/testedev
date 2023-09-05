@@ -44,10 +44,11 @@ CREATE TABLE IF NOT EXISTS currency_data (
 
 ## Como Usar
 
-
 1. Na página inicial, você encontrará um campo de texto onde pode inserir um código ou número ISO 4217.
 2. Digite o código Exemplo: USD, 840, ou número desejado e clique no botão "Consultar".
 3. Os detalhes da moeda, incluindo código, número, casas decimais, moeda e locais de utilização, serão exibidos na tela.
+![Exemplo 1](img/img1.png)
+![Exemplo 2](img/img2.png)
 
 ## Contribuição
 
